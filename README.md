@@ -1,17 +1,11 @@
-﻿AO Ladderer
+﻿[ao-ladderer.github.io](https://ao-ladderer.github.io)
 ===========
 
-Implant laddering tool for the sci-fi MMORPG Anarchy Online. 
+Web-based implant laddering tool for the sci-fi MMORPG Anarchy Online. Forked from [davghouse](https://github.com/davghouse)'s [AO Ladderer](https://github.com/davghouse/AOLadderer) project.
 
-Latest release [here](https://github.com/davghouse/AOLadderer/releases/tag/v2.2.0) (built for W10, but it probably works on W7 too).
-
-Forum post [here](https://forums.anarchy-online.com/showthread.php?617115-AO-Ladderer-Implant-laddering-tool).
-
-If you don't have Windows you can use an earlier, cross-platform release [here](https://github.com/davghouse/AOLadderer/releases/tag/v1.3.3).
-
-![Build](/Screenshots/Build.png)
-![Basic Ladder](/Screenshots/BasicLadder.png)
-![Basic Shopping](/Screenshots/BasicShopping.png)
+[![Build](/Screenshots/Build.png)](https://ao-ladderer.github.io/build)
+[![Ladder](/Screenshots/Ladder.png)](https://ao-ladderer.github.io/ladder)
+[![Shopping](/Screenshots/Shopping.png)](https://ao-ladderer.github.io/shopping)
 
 Background
 ----------
@@ -77,10 +71,6 @@ For many characters, laddering implants is a part of this process.
 Usage
 -----
 
-For Windows 10 users, download the latest release and double-click on AOLadder.UI.exe.
-Earlier versions of Windows aren't supported, but there's a chance it might work on them.
-Users without Windows 10 can use an old (cross-platform) version of the application found [here](https://github.com/davghouse/AOLadderer/releases/tag/v1.3.3).
-
 Choose your implant configuration and input the abilities and Treatment you'll have at the time of equipping.
 I do this by having an actual character and equipping it with gear I think will be good for implant laddering.
 You don't need to tell it the actual abilities you see in your skill window: see the Tips section below for more details.
@@ -100,20 +90,20 @@ Usefulness
 
 Comparing implant configurations for a level 48 froob Nano-Technician:
 
-| Strategy             | Average QL | Link                                       | Matter Crea |
-| -------------------- | ---------- | ------------------------------------------ | ----------- |
-| Direct               | 125.00     | http://auno.org/ao/equip.php?saveid=192649 | 138         |
-| Twink-by-hand        | 140.46     | http://auno.org/ao/equip.php?saveid=192647 | 147         |
-| AO Ladderer (v1.3.3) | 140.62     | http://auno.org/ao/equip.php?saveid=193165 | 145         |
+| Strategy      | Average QL | Link                                       | Matter Crea |
+| ------------- | ---------- | ------------------------------------------ | ----------- |
+| Direct        | 125.00     | http://auno.org/ao/equip.php?saveid=192649 | 138         |
+| Twink-by-hand | 140.46     | http://auno.org/ao/equip.php?saveid=192647 | 147         |
+| AO Ladderer   | 140.62     | http://auno.org/ao/equip.php?saveid=193165 | 145         |
 
 The first strategy uses no ladder implants, just equipping required implants in the order which maximizes their average QL (this order is non-obvious).
-The second strategy was done by hand, twinking naturally. The third uses the basic ladder.
+The second strategy was done by hand, twinking naturally. The third uses the ladderer.
 Matter Crea is listed because it's the most important stat for that specific character.
 The average QL from the ladderer is slightly higher, but the Matter Crea is 2 points less, which could be a big deal.
 
 The ladderer provides a decent approximation for people wanting to equip a low to mid-level character.
 It is very good at being frugal with the amount of ladder implants that you have to create.
-For the basic ladder, you'll never have to build more than 10 ladder implants, and it'll usually be less than that.
+You'll never have to build more than 10 ladder implants, and it'll usually be less than that.
 
 Tips
 ----
@@ -153,15 +143,10 @@ And read about ctrl+left-clicking in the Usage section above if you haven't alre
 Algorithm
 ---------
 
-Intuitively, the basic ladder process uses a greedy algorithm that proceeds recursively as follows:
+Intuitively, the ladder process uses a greedy algorithm that proceeds recursively as follows:
 
 Equip the ladder implant that would yield the highest average final implant QL if we were to equip all of our final implants immediately afterwards (in the optimal order--found by brute force).
 Stop equipping ladder implants when we run out of slots for them, or when the addition of the next one no longer increases the average QL.
-
-The advanced ladder process adds another layer of recursion on top:
-
-Get the set of ladder implants found by the basic ladder process, and then ladder those implants up via the basic ladder process (and then use those laddered ladder implants to equip the final implants).
-Going any further than one level deep isn't worth it, as we very quickly run into diminishing returns.
 
 More details:
 
